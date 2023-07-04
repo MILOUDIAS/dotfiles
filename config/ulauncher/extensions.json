@@ -1,0 +1,16 @@
+{
+    "com.github.hillaryychan.ulauncher-fzf": {
+        "id": "com.github.hillaryychan.ulauncher-fzf",
+        "url": "https://github.com/hillaryychan/ulauncher-fzf",
+        "updated_at": "2022-06-25T21:38:01.726818",
+        "last_commit": "a2d2d4e26dc8c5ecee808a9dd35ee8efddb71be9",
+        "last_commit_time": "2022-05-29T09:04:12"
+    },
+    "com.github.tchar.ulauncher-albert-calculate-anything": {
+        "id": "com.github.tchar.ulauncher-albert-calculate-anything",
+        "url": "https://github.com/tchar/ulauncher-albert-calculate-anything",
+        "updated_at": "2022-06-25T21:40:26.197859",
+        "last_commit": "ee0903174c8b87cd1f7c3b6c1acef10702547507",
+        "last_commit_time": "2021-08-12T06:39:56"
+    }
+}

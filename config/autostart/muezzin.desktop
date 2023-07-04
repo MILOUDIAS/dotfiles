@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=muezzin
+Comment=muezzinstartup script
+Exec=/opt/muezzin/muezzin
+StartupNotify=false
+Terminal=false

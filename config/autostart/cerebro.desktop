@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=cerebro
+Comment=cerebrostartup script
+Exec=/tmp/.mount_Cerebrrmzcnh/cerebro
+StartupNotify=false
+Terminal=false

@@ -166,7 +166,7 @@ bindsym $mod+Shift+s exec --no-startup-id "$HOME/.config/rofi/applets/applets/sc
 # bindsym $mod+e exec --no-startup-id  emacsclient -c -s doom -a emacs
 
 #bindsym $mod+e exec --no-startup-id "emacsclient -c -a emacs ~"
-bindsym $mod+e exec --no-startup-id "emacs --with-profile=spacemacs"
+bindsym $mod+e exec --no-startup-id emacs
 #bindsym $mod+d exec --no-startup-id emacsclient -es 'spacemacs' "(emacs-run-launcher)"
 #------------------------- emacs app launcher ---------------------------------
 #bindsym $mod+Shift+d exec --no-startup-id emacsclient --socket-name "spacemacs" --eval "(emacs-run-launcher)"
@@ -178,9 +178,9 @@ exec --no-startup-id systemctl --user enable --now ulauncher
 bindsym $mod+b exec --no-startup-id "~/.config/i3/search_books.sh"
 
 # start firefox at startup
-# exec --no-startup-id firefox
+exec --no-startup-id firefox
 # exec --no-startup-id microsoft-edge-stable
-exec --no-startup-id firefox-developer-edition
+# exec --no-startup-id firefox-developer-edition
 exec --no-startup-id alacritty
 # running ArmorPaint
 #bindsym $mod+shift+a exec --no-startup-id "~/Base/Apps/armorpaint/armorcore/Deployment/ArmorPaint ~/Base/Apps/armorpaint/build/krom"
@@ -741,13 +741,10 @@ bindsym mod1+Shift+u exec --no-startup-id wal -i $(cat $HOME/.config/variety/wal
 #################                          audio settings                                           #################
 #####################################################################################################################
 
-#bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '10%+'"
-#bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '10%-'"
-#bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master toggle"
+# bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -D pulse sset Master '10%+'"
+# bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -D pulse sset Master '10%-'"
+# bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master toggle"
 
-#bindsym XF86AudioRaiseVolume exec --no-startup-id "/$HOME/.bin/volume.py '+10'"
-#bindsym XF86AudioLowerVolume exec --no-startup-id "/$HOME/.bin/volume.py '-10'"
-#bindsym XF86AudioMute exec --no-startup-id "/$HOME/.bin/volume.py 'toggle'"
 
 # append "-c $alsacard" without quotes to override default card
 
@@ -755,13 +752,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume -n -t $statuscmd -u 
 bindsym XF86AudioLowerVolume exec --no-startup-id i3-volume -n -t $statuscmd -u $statussig down $volumestep
 bindsym XF86AudioMute        exec --no-startup-id i3-volume -n -t $statuscmd -u $statussig mute
 
-#bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume -an -t $statuscmd -u $statussig up $volumestep
-#bindsym XF86AudioLowerVolume exec --no-startup-id i3-volume -an -t $statuscmd -u $statussig down $volumestep
-#bindsym XF86AudioMute        exec --no-startup-id i3-volume -an -t $statuscmd -u $statussig mute
-
-#bindsym XF86AudioRaiseVolume exec --no-startup-id "changeVolume 2dB+"
-#bindsym XF86AudioLowerVolume exec --no-startup-id "changeVolume 2dB-"
-#bindsym XF86AudioMute exec --no-startup-id "amixer -D pulse set Master toggle"
+# bindsym XF86AudioRaiseVolume exec --no-startup-id i3-volume -an -t $statuscmd -u $statussig up $volumestep
+# bindsym XF86AudioLowerVolume exec --no-startup-id i3-volume -an -t $statuscmd -u $statussig down $volumestep
+# bindsym XF86AudioMute        exec --no-startup-id i3-volume -an -t $statuscmd -u $statussig mute
 
 #https://github.com/acrisci/playerctl/
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -777,13 +770,16 @@ bindsym XF86AudioStop exec --no-startup-id playerctl stop
 
 
 #####################################################################################################################
-#################                          xbacklight                                               #################
+#################                          xbacklight/brightnessctl config                          #################
 #####################################################################################################################
-
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
-
-
+# increase screen brightness
+# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 
+# decrease screen brightness
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 
+# increase screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id  brightnessctl s +10
+# decrease screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id  brightnessctl s 10-
 
 #####################################################################################################################
 #################                          bar toggle                                               #################
@@ -842,7 +838,6 @@ popup_during_fullscreen smart
 
 
 for_window [class="^.*"] border pixel 2
-for_window [class="Ulauncher"] sticky enable, border none
 gaps inner 5
 gaps outer 5
 smart_gaps on
@@ -1063,10 +1058,9 @@ position top
 #################                          keyboard control                                         #################
 #####################################################################################################################
 
-#exec --no-startup-id setxkbmap -layout fr,us
-#exec --no-startup-id setxkbmap -option 'grp:alt_shift_toggle'
-
-
+# exec --no-startup-id "setxkbmap -layout fr,us"
+# exec --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle'"
+# bindsym mod1+space "xkb-switch -n"
 
 #####################################################################################################################
 #################                          unclutter                                                #################
@@ -1113,6 +1107,8 @@ for_window [class="Spotify"] move scratchpad
 
 for_window [title="Pomodoro Logger"] floating enable
 for_window [class="pomodoro-logger"] floating enable
+for_window [class="Ulauncher"] sticky enable, border none
+
 # -- Website Launcher --
 mode "$browser_links" {
 	bindsym p exec xdg-open "https://play.pokemonshowdown.com"

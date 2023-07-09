@@ -1,0 +1,6 @@
+(package! rainbow-mode)
+(package! rainbow-identifiers)
+(package! rainbow-delimiters)
+(package! color-identifiers-mode)
+(unpin! org-roam)
+(package! org-roam-ui)

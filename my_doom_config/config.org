@@ -1,7 +1,6 @@
 #+title: Config
 #+property: header-args :tangle config.el
 
-
 *WARNING*:
 Don't forget to press *C-c C-c* to refresh the content of the org file.
 And do that by putting the cursor in the header part of this file,
@@ -71,9 +70,24 @@ clients, file templates and snippets. It is optional.
  (setq org-directory "~/org/")
 
 #+begin_src elisp
-(setq org-directory "~/Dropbox/Personal/org/")
-(setq org-roam-directory "~/Dropbox/Personal/org-roam/")
-(setq +org-roam-open-buffer-on-find-file t)
+(after! org
+        (org-roam-db-autosync-mode)
+        (setq org-directory "~/Dropbox/Personal/org/")
+        (setq org-roam-directory "~/Dropbox/Personal/org-roam/")
+        (setq +org-roam-open-buffer-on-find-file t))
+
+(setq org-roam-database-connector 'sqlite3)
+
+(setq org-roam-capture-templates
+  '(("d" "default" plain "%?" :target
+     (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+     :unnarrowed t
+     :jump-to-captured t)
+    ("l" "literature note" plain "%?" :target
+     (file+head "literature/${title}.org" "#+title: ${title}\n")
+     :unnarrowed t
+     :jump-to-captured t)))
+
 #+end_src
  Whenever you reconfigure a package, make sure to wrap your config in an
  `after!' block, otherwise Doom's defaults may override your settings. E.g.

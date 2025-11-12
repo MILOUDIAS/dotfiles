@@ -134,7 +134,7 @@ bindsym $mod+Shift+9 move container to workspace 9; workspace 9
 bindsym $mod+Shift+0 move container to workspace 10; workspace 10
 
 # Open applications on specific workspaces
-assign [class="firefox|qutebrowser|thorium-browser"] workspace 1
+assign [class="firefox|qutebrowser|thorium-browser|zen-browser"] workspace 1
 assign [class="code-oss|Emacs"] workspace 2
 assign [class="Blender|gimp"] workspace 3
 assign [class="Pcmanfm|Thunar"] workspace 4
@@ -150,7 +150,14 @@ for_window [urgent=latest] focus
 # start dmenu
 #bindsym $mod+shift+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn #'NotoMonoRegular:bold:pixelsize=14'
 
-# exec --no-startup-id emacs --with-profile doom --daemon &
+# exec --no-startup-id emacs --daemon &
+# Doom emacs
+exec --no-startup-id emacs --with-profile doom --daemon &
+
+# Spacemacs
+ # exec --no-startup-id emacs --with-profile spacemacs --daemon &
+
+
 # start rofi small
 bindsym $mod+Shift+d exec --no-startup-id "rofi -show drun -font 'Noto Sans 13' show combi -icon-theme 'Papirus' -show-icons"
 #bindsym $mod+d exec --no-startup-id "$HOME/.config/rofi/launchers/colorful/launcher.sh"
@@ -160,24 +167,27 @@ bindsym $mod+a exec --no-startup-id "$HOME/.config/rofi/applets/applets/apps.sh"
 #bindsym $mod+s exec --no-startup-id "$HOME/.config/rofi/applets/applets/quicklinks.sh"
 bindsym $mod+Shift+s exec --no-startup-id "$HOME/.config/rofi/applets/applets/screenshot.sh"
 # run emacs with spacemacs config
-# bindsym $mod+e exec --no-startup-id emacs
-#bindsym $mod+e exec --no-startup-id emacsclient -cs spacemacs
-# bindsym $mod+e exec --no-startup-id  emacsclient -c -s doom -a emacs
 
-#bindsym $mod+e exec --no-startup-id "emacsclient -c -a emacs ~"
-bindsym $mod+e exec --no-startup-id emacs
-#bindsym $mod+d exec --no-startup-id emacsclient -es 'spacemacs' "(emacs-run-launcher)"
+#bindsym $mod+e exec --no-startup-id emacsclient -nc -a 'emacs'
+
+bindsym $mod+e exec --no-startup-id emacsclient -nc -s doom -a emacs
+# bindsym $mod+e exec --no-startup-id emacsclient -nc -s vanilla -a emacs
+
+
+# bindsym $mod+e exec --no-startup-id emacs
 #------------------------- emacs app launcher ---------------------------------
 #bindsym $mod+Shift+d exec --no-startup-id emacsclient --socket-name "spacemacs" --eval "(emacs-run-launcher)"
 
 #------------------------- ulauncher app launcher ---------------------------------
 exec --no-startup-id systemctl --user enable --now ulauncher
+ bindsym $mod+d exec --no-startup-id gapplication launch io.ulauncher.Ulauncher
 # exec --no-startup-id artha 
 #--------------------------- search my books with rofi----------------------
 bindsym $mod+b exec --no-startup-id "~/.config/i3/search_books.sh"
 
 # start firefox at startup
-exec --no-startup-id thorium-browser
+# exec --no-startup-id thorium-browser
+exec --no-startup-id zen-browser
 # exec --no-startup-id microsoft-edge-stable
 # exec --no-startup-id firefox-developer-edition
 exec --no-startup-id alacritty
@@ -323,7 +333,7 @@ bindsym $mod+z layout tabbed
 
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $Mod1+space focus mode_toggle
 
 # focus the parent container
 #bindsym $mod+a focus parent
@@ -392,7 +402,7 @@ font pango:Noto Mono Regular 13
 # you can find the class with the program xprop
 
 # Workspace 1 browser related
-assign [class="Firefox|CuteBrowser|thorium-browser|Brave"]                → 1
+assign [class="Firefox|CuteBrowser|Thorium-browser|Brave"]                → 1
 
 # Workspace 2 text editor related
 assign [class="emacs|Code"]                                     → 2
@@ -535,7 +545,7 @@ exec_always --no-startup-id dunst
 #bindsym $mod+c exec --no-startup-id conky-toggle
 bindsym control+mod1+Next exec --no-startup-id conky-rotate -n
 bindsym control+mod1+Prior exec --no-startup-id conky-rotate -p
-
+bindsym control+mod1+c exec --no-startup-id conky-toggle
 # terminal
 bindsym $mod+Return exec --no-startup-id alacritty;focus
 bindsym $mod+KP_Enter exec --no-startup-id alacritty;focus
@@ -551,7 +561,7 @@ bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
 bindsym control+mod1+m exec --no-startup-id xfce4-settings-manager
 
 #catfish
-bindsym control+mod1+c exec --no-startup-id catfish;focus
+#bindsym control+mod1+c exec --no-startup-id catfish;focus
 
 #arcolinux-logout
 bindsym control+mod1+k exec --no-startup-id arcolinux-logout
@@ -707,19 +717,19 @@ for_window [class="Terminator"] focus
 
 #Variety keybindings mod1 = ALT
 # trash wallpaper
-bindsym mod1+t exec --no-startup-id variety -t
+# bindsym mod1+Shift+t exec --no-startup-id variety -t
 # next wallpaper
-bindsym mod1+n exec --no-startup-id variety -n
-bindsym mod1+Right exec --no-startup-id variety -n
+# bindsym mod1+Shift+n exec --no-startup-id variety -n
+# bindsym mod1+Right exec --no-startup-id variety -n
 # previous wallpaper
-bindsym mod1+p exec --no-startup-id variety -p
-bindsym mod1+Left exec --no-startup-id variety -p
+# bindsym mod1+Shift+p exec --no-startup-id variety -p
+# bindsym mod1+Left exec --no-startup-id variety -p
 # favorite wallpaper
-bindsym mod1+f exec --no-startup-id variety -f
+# bindsym mod1+Shift+f exec --no-startup-id variety -f
 # pause wallpaper
-bindsym mod1+Up exec --no-startup-id variety --pause
+# bindsym mod1+Up exec --no-startup-id variety --pause
 # resume wallpaper
-bindsym mod1+Down exec --no-startup-id variety --resume
+# bindsym mod1+Down exec --no-startup-id variety --resume
 bindsym $mod+c move absolute position center
 
 #####################################################################################################################
@@ -1057,8 +1067,13 @@ position top
 #################                          keyboard control                                         #################
 #####################################################################################################################
 
-# exec --no-startup-id "setxkbmap -layout fr,us"
-# exec --no-startup-id "setxkbmap -option 'grp:alt_shift_toggle'"
+# Define a variable to store the current layout
+# set $current_layout fr
+
+# Toggle between French and English layouts
+# bindsym $mod+space exec "if [ \$current_layout == us ]; then setxkbmap -layout fr; current_layout=fr; else setxkbmap -layout us; current_layout=us; fi"
+# exec --no-startup-id "setxkbmap -layout fr,us; setxkbmap -option 'grp:alt_shift_toggle'"
+ # exec --no-startup-id "setxkbmap -layout fr,us; setxkbmap -option 'grp:win_space_toggle'"
 # bindsym mod1+space "xkb-switch -n"
 
 #####################################################################################################################
